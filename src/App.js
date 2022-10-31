@@ -6,23 +6,26 @@ export default function App() {
   const [title, setTitle] = useState("");
 
   function handleChange(event) {
-    // console.log(event.target.value);
     setName(event.target.value);
   }
-  function newTitle() {
+
+  function newTitle(event) {
     setTitle(name);
+    event.preventDefault();
   }
 
   return (
     <div className="container">
       <h1>Hello {title}</h1>
-      <input
-        onChange={handleChange}
-        type="text"
-        placeholder="What's your name?"
-        value={name}
-      />
-      <button onClick={newTitle}>Submit</button>
+      <form onSubmit={newTitle}>
+        <input
+          onChange={handleChange}
+          type="text"
+          placeholder="What's your name?"
+          value={name}
+        />
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 }
